@@ -1,0 +1,148 @@
+{
+  "brand": "StrataViz",
+  "project_type": "Marketing / Landing Site",
+  "theme": "dark",
+  "colors": {
+    "background": "#050505",
+    "surface": "#121212",
+    "surface_elevated": "#1A1A1A",
+    "primary_orange": "#FF5A00",
+    "primary_orange_hover": "#E04F00",
+    "silver": "#C0C0C0",
+    "text_primary": "#FFFFFF",
+    "text_secondary": "#A1A1AA",
+    "border": "rgba(255,255,255,0.08)"
+  },
+  "typography": {
+    "headings": {
+      "family": "'Anton', sans-serif",
+      "weights": ["400"],
+      "usage": "H1, H2, massive numbers, marquee. ALWAYS uppercase. Super tight tracking."
+    },
+    "body": {
+      "family": "'Manrope', sans-serif",
+      "weights": ["400", "500", "700"],
+      "usage": "Paragraphs, labels, buttons. Clean, geometric legibility."
+    },
+    "scales": {
+      "h1": "text-6xl md:text-7xl lg:text-[8vw] leading-[0.85] tracking-tighter uppercase",
+      "h2": "text-4xl md:text-5xl lg:text-7xl leading-none tracking-tight uppercase",
+      "h3": "text-2xl md:text-3xl font-bold tracking-tight",
+      "body": "text-base md:text-lg text-text_secondary leading-relaxed",
+      "overline": "text-xs md:text-sm tracking-[0.2em] uppercase text-silver font-bold"
+    }
+  },
+  "visual_enhancers": {
+    "textures": "Subtle noise grain overlay on the background to avoid digital flatness. No generic gradients.",
+    "borders": "1px solid rgba(255,255,255,0.1) for structural layout and cards.",
+    "surfaces": "Use Solid Backgrounds with hard borders or Crystal Glass (backdrop-blur-xl bg-black/40 border-t border-white/10) for floating elements."
+  },
+  "motion": {
+    "scrolling": "MANDATORY: Use lenis for smooth, momentum-based scrolling. This is critical for the premium feel.",
+    "hero_reveal": "Masked line-by-line reveal for the H1 text. Wrap text lines in overflow-hidden divs, and animate the inner text sliding up from y: 100%.",
+    "scroll_animations": "Use framer-motion useInView or whileInView. Elements should slide up slightly (y: 40) and fade in. Stagger children for lists/grids.",
+    "parallax": "Subtle parallax on hero background and editorial product images (y-axis translation linked to scroll)."
+  },
+  "layouts": {
+    "spacing": "Generous. Use py-24, py-32 for section padding. gap-8 to gap-16 in grids.",
+    "hero": "Full height (min-h-screen). Absolute positioning for background image with heavy bg-black/60 overlay. Text locked to bottom-left or dead-center with massive impact.",
+    "features_bento": "Bento Grid strategy. grid-cols-1 md:grid-cols-12 gap-6. Mix spans: col-span-8 row-span-2, col-span-4 row-span-1. Asymmetry is key.",
+    "editorial_images": "Clipped frames. Images shouldn't just be full width; they should be framed in elegant aspect ratios (like 4:3 or 16:9) with sharp edges and spotlight glow."
+  },
+  "sections_blueprint": [
+    {
+      "id": "navbar",
+      "layout": "Fixed top, w-full, z-50. Glassmorphism (backdrop-blur-xl bg-black/50 border-b border-white/10). Logo on left, direct download button on right."
+    },
+    {
+      "id": "hero",
+      "layout": "min-h-screen relative flex flex-col justify-end pb-24 px-8. Background image of dark stadium/coach with black overlay. Massive kinetic typography masking reveal: 'SEE THE GAME. BREAK IT DOWN.' Action button pointing to downloads."
+    },
+    {
+      "id": "marquee",
+      "layout": "py-8 border-y border-white/10 bg-surface/50. Slow continuous scroll. Text: 'FILM STUDY • PLAYLIST CREATION • TACTICAL ANALYSIS • COACHING •'. Font: Anton, text-3xl, text-silver."
+    },
+    {
+      "id": "manifesto",
+      "layout": "py-32 px-8. Numbered chapters. Grid layout. Left column: Massive number '01' in Anton. Right column: Statement about the coaching edge. Chapters: 01 The Film, 02 The Cut, 03 The Victory."
+    },
+    {
+      "id": "features_showcase",
+      "layout": "py-32 px-8. Editorial product photography. High-contrast cards showcasing: 'Create Clips', 'Build Playlists', 'Tag Plays'. Use bento layout. Images should look like glowing screens in dark rooms."
+    },
+    {
+      "id": "downloads",
+      "layout": "py-32 px-8 bg-surface. Title 'DOWNLOAD STRATAVIZ'. Grid of 3 tactical cards: Windows, Mac (Intel), Mac (Apple Silicon). Cards have 1px border, hover to lift and border-primary_orange. Direct file download icons."
+    },
+    {
+      "id": "footer",
+      "layout": "py-24 px-8 border-t border-white/10 flex flex-col items-center. Massive brand name 'STRATAVIZ' at text-[15vw]. Copyright and legal below."
+    }
+  ],
+  "components_to_build": [
+    "Navbar (Custom HTML/Tailwind)",
+    "KineticHero (Framer Motion)",
+    "Marquee (react-fast-marquee)",
+    "ManifestoChapter (Framer Motion scroll reveal)",
+    "EditorialFeatureCard (Custom with Framer Motion hover/parallax)",
+    "DownloadCard (Tactical UI, hover state)",
+    "Footer"
+  ],
+  "image_urls": {
+    "hero_background": {
+      "url": "https://images.pexels.com/photos/35898730/pexels-photo-35898730.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Aerial view of an illuminated sports stadium at night. Perfect deep dark background for hero."
+    },
+    "coach_manifesto": {
+      "url": "https://images.unsplash.com/photo-1745778110673-c96c14d1c297?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDB8MHwxfHNlYXJjaHwyfHxiYXNrZXRiYWxsJTIwY29hY2glMjBjbGlwYm9hcmQlMjBuaWdodHxlbnwwfHx8fDE3ODQyMjg1ODB8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Football coach back at dusk. Use in the manifesto section for emotional resonance."
+    },
+    "feature_screen_1": {
+      "url": "https://images.unsplash.com/photo-1650661926447-9efb2610f64c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHwyfHx2aWRlbyUyMGVkaXRpbmclMjBzY3JlZW4lMjBkYXJrJTIwcm9vbXxlbnwwfHx8fDE3ODQyMjg1OTN8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Laptop in a dark room. Represents the film breakdown / editing UI."
+    },
+    "feature_screen_2": {
+      "url": "https://images.unsplash.com/photo-1591805953001-f6ad7822d736?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwxfHxjb2FjaCUyMGxhcHRvcCUyMHNwb3J0cyUyMGdhbWV8ZW58MHx8fHwxNzg0MjI4NTc5fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Person using laptop in dark. Represents tagging and playlist building."
+    },
+    "feature_screen_3": {
+      "url": "https://images.unsplash.com/photo-1606037988094-fbc91ebdcdfb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwzfHxzcG9ydHMlMjBlcXVpcG1lbnQlMjBiYXNrZXRiYWxsJTIwc29jY2VyJTIwZm9vdGJhbGwlMjBkYXJrfGVufDB8fHx8MTc4NDIyODU5NHww&ixlib=rb-4.1.0&q=85",
+      "description": "Black Nike basketball in dark. Sports texture for features."
+    },
+    "brand_logo": {
+      "url": "https://customer-assets-rejwkqb3.emergentagent.net/job_89fd519c-ed84-4342-9a88-ed06beeedaed/artifacts/bt8k5zzu_StrataViz%20Logo%20Final%20Use%20This%20One.png",
+      "description": "StrataViz Official Brand Logo"
+    }
+  },
+  "dependencies_to_install": [
+    "framer-motion",
+    "lenis",
+    "react-fast-marquee",
+    "@phosphor-icons/react",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "accessibility": {
+    "contrast": "Ensure text over images has sufficient contrast. Use bg-black/50 or bg-black/60 overlays on hero.",
+    "aria": "Add aria-hidden='true' to purely decorative animations like the marquee.",
+    "testing": "All interactive and key informational elements MUST include a data-testid attribute (e.g., data-testid='download-mac-intel-button')."
+  },
+  "instructions_to_main_agent": [
+    "You are building a high-end, Awwwards-level marketing site. NO generic layouts. Push boundaries.",
+    "Use raw HTML/Tailwind for layouts, NOT Shadcn cards, to maintain creative freedom and asymmetry.",
+    "MANDATORY: Import google fonts Anton and Manrope in index.css or via next/font (if next) / head.",
+    "Implement Lenis for smooth scrolling at the root level.",
+    "Implement the kinetic text reveal: Split text into lines, wrap each in overflow-hidden, animate Y from 100% to 0%.",
+    "Downloads section: 3 prominent tactical cards. Each should have a direct download feel (e.g. icon + 'Download for Windows (.exe)').",
+    "Never use purely transparent backgrounds on navbars if content scrolls underneath. Use backdrop-blur-xl bg-black/50.",
+    "Ensure 'data-testid' is on all buttons and download links."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic outputs. Avoid 'AI slop' aesthetic.",
+    "Do not center-align paragraphs. Use optical alignment.",
+    "Create depth through layered design elements.",
+    "Use 2-3x more spacing than feels comfortable (py-24, py-32).",
+    "Never use generic AI emojis for icons. Use Phosphor Icons.",
+    "All interactions need micro-animations (hover states, scaling)."
+  ]
+}
