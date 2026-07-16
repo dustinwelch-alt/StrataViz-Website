@@ -7,6 +7,20 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        display: ['Anton', 'sans-serif'],
+        sans: ['Manrope', 'sans-serif'],
+      },
+      colors: {
+        sv: {
+          bg: '#050505',
+          surface: '#101012',
+          elevated: '#16161a',
+          orange: '#ff5a00',
+          orangeHover: '#ff7324',
+          silver: '#c7c9cf',
+        },
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',

@@ -1,12 +1,12 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict
-from typing import List
+from pydantic import BaseModel, Field, ConfigDict, EmailStr
+from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
 
@@ -20,51 +20,121 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
 # Create the main app without a prefix
-app = FastAPI()
+app = FastAPI(title="StrataViz Marketing API")
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
 
-# Define Models
-class StatusCheck(BaseModel):
-    model_config = ConfigDict(extra="ignore")  # Ignore MongoDB's _id field
-    
+def now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+# ---------------- Models ----------------
+class DownloadBuild(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    client_name: str
-    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    platform: str            # windows | mac_apple_silicon | mac_intel
+    label: str               # e.g. "Windows"
+    subtitle: str            # e.g. "Windows 10 & 11 (64-bit)"
+    file_ext: str            # e.g. ".exe"
+    version: str
+    file_size: str
+    file_url: str
+    download_count: int = 0
 
-class StatusCheckCreate(BaseModel):
-    client_name: str
 
-# Add your routes to the router instead of directly to app
+class SubscribeCreate(BaseModel):
+    email: EmailStr
+    role: Optional[str] = None
+
+
+class Subscriber(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    email: str
+    role: Optional[str] = None
+    created_at: str = Field(default_factory=now_iso)
+
+
+# ---------------- Seed data ----------------
+DEFAULT_BUILDS = [
+    {
+        "platform": "windows",
+        "label": "Windows",
+        "subtitle": "Windows 10 & 11 · 64-bit",
+        "file_ext": ".exe",
+        "version": "1.0.0",
+        "file_size": "182 MB",
+        "file_url": "https://downloads.strataviz.app/StrataViz-Setup-1.0.0.exe",
+        "download_count": 0,
+    },
+    {
+        "platform": "mac_apple_silicon",
+        "label": "macOS",
+        "subtitle": "Apple Silicon · M1/M2/M3",
+        "file_ext": ".dmg",
+        "version": "1.0.0",
+        "file_size": "176 MB",
+        "file_url": "https://downloads.strataviz.app/StrataViz-1.0.0-arm64.dmg",
+        "download_count": 0,
+    },
+    {
+        "platform": "mac_intel",
+        "label": "macOS",
+        "subtitle": "Intel · x86-64",
+        "file_ext": ".dmg",
+        "version": "1.0.0",
+        "file_size": "189 MB",
+        "file_url": "https://downloads.strataviz.app/StrataViz-1.0.0-x64.dmg",
+        "download_count": 0,
+    },
+]
+
+
+async def seed_downloads():
+    count = await db.downloads.count_documents({})
+    if count == 0:
+        for b in DEFAULT_BUILDS:
+            await db.downloads.insert_one(DownloadBuild(**b).model_dump())
+        logger.info("Seeded default download builds.")
+
+
+# ---------------- Routes ----------------
 @api_router.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "StrataViz API online"}
 
-@api_router.post("/status", response_model=StatusCheck)
-async def create_status_check(input: StatusCheckCreate):
-    status_dict = input.model_dump()
-    status_obj = StatusCheck(**status_dict)
-    
-    # Convert to dict and serialize datetime to ISO string for MongoDB
-    doc = status_obj.model_dump()
-    doc['timestamp'] = doc['timestamp'].isoformat()
-    
-    _ = await db.status_checks.insert_one(doc)
-    return status_obj
 
-@api_router.get("/status", response_model=List[StatusCheck])
-async def get_status_checks():
-    # Exclude MongoDB's _id field from the query results
-    status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
-    
-    # Convert ISO string timestamps back to datetime objects
-    for check in status_checks:
-        if isinstance(check['timestamp'], str):
-            check['timestamp'] = datetime.fromisoformat(check['timestamp'])
-    
-    return status_checks
+@api_router.get("/downloads", response_model=List[DownloadBuild])
+async def get_downloads():
+    docs = await db.downloads.find({}, {"_id": 0}).to_list(100)
+    order = {"windows": 0, "mac_apple_silicon": 1, "mac_intel": 2}
+    docs.sort(key=lambda d: order.get(d.get("platform"), 99))
+    return [DownloadBuild(**d) for d in docs]
+
+
+@api_router.post("/downloads/{platform}/track", response_model=DownloadBuild)
+async def track_download(platform: str):
+    doc = await db.downloads.find_one({"platform": platform}, {"_id": 0})
+    if not doc:
+        raise HTTPException(status_code=404, detail="Platform build not found")
+    await db.downloads.update_one({"platform": platform}, {"$inc": {"download_count": 1}})
+    doc["download_count"] = doc.get("download_count", 0) + 1
+    return DownloadBuild(**doc)
+
+
+@api_router.post("/subscribe", response_model=Subscriber)
+async def subscribe(input: SubscribeCreate):
+    existing = await db.subscribers.find_one({"email": input.email}, {"_id": 0})
+    if existing:
+        return Subscriber(**existing)
+    sub = Subscriber(email=input.email, role=input.role)
+    await db.subscribers.insert_one(sub.model_dump())
+    return sub
+
 
 # Include the router in the main app
 app.include_router(api_router)
@@ -83,6 +153,12 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
+
+
+@app.on_event("startup")
+async def on_startup():
+    await seed_downloads()
+
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
