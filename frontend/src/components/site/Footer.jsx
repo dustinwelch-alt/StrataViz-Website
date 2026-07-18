@@ -35,7 +35,7 @@ export const Footer = () => {
               <span className="overline text-silver/50">Explore</span>
               {[
                 { l: "Features", id: "features" },
-                { l: "Manifesto", id: "manifesto" },
+                { l: "How It Works", id: "how-it-works" },
                 { l: "Download", id: "downloads" },
               ].map((x) => (
                 <button

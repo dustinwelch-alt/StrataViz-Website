@@ -5,7 +5,7 @@ import { Toaster } from "sonner";
 import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
 import { BrandMarquee } from "@/components/site/Marquee";
-import { Manifesto } from "@/components/site/Manifesto";
+import { HowItWorks } from "@/components/site/HowItWorks";
 import { Features } from "@/components/site/Features";
 import { Downloads } from "@/components/site/Downloads";
 import { Subscribe } from "@/components/site/Subscribe";
@@ -47,7 +47,7 @@ function App() {
       <main>
         <Hero />
         <BrandMarquee />
-        <Manifesto />
+        <HowItWorks />
         <Features />
         <Downloads />
         <Subscribe />

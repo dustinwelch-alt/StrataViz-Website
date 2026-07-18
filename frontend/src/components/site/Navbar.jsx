@@ -7,7 +7,7 @@ const LOGO =
 
 const links = [
   { label: "Features", id: "features" },
-  { label: "Manifesto", id: "manifesto" },
+  { label: "How It Works", id: "how-it-works" },
   { label: "Download", id: "downloads" },
 ];
 
