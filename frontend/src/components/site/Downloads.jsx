@@ -22,7 +22,7 @@ const BUILDS = [
     version: "1.2.1",
     file_size: "190.2 MB",
     file_url:
-      "https://customer-assets-v7afamib.emergentagent.net/job_coach-breakdown/artifacts/fqv6akdq_StrataViz-1.2.1-arm64.dmg",
+      "https://github.com/dustinwelch-alt/StrataViz-Downloads/releases/latest/download/StrataViz-AppleSilicon.dmg",
     icon: Apple,
     tag: "For Mac OS",
   },
