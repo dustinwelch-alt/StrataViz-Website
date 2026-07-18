@@ -17,8 +17,8 @@ const reveal = {
 };
 
 const small = [
-  { icon: Tag, title: "Tag Every Play", body: "Label by player, set, or situation for instant recall." },
-  { icon: Users, title: "Share With Staff", body: "Send playlists to coaches and athletes in a click." },
+  { icon: Tag, title: "Tag Every Play", body: "Label by player, set, or situation for instant recall — with four fully customizable tagging buttons built for the way you break down film." },
+  { icon: Users, title: "Easily Export", body: "Export and send playlists straight to your athletes and staff." },
   { icon: Zap, title: "Instant Clips", body: "Cut and export decisive moments in seconds." },
 ];
 
@@ -140,8 +140,8 @@ export const Features = () => {
           {[
             { k: "4+", v: "Sports covered" },
             { k: "Native", v: "Win & macOS builds" },
-            { k: "Offline", v: "Runs on your machine" },
-            { k: "0", v: "Cloud upload required" },
+            { k: "Local", v: "Storage stays on your computer" },
+            { k: "$0", v: "No storage fees, ever" },
           ].map((s) => (
             <div key={s.v}>
               <div className="font-display text-4xl md:text-6xl text-orange leading-none">
