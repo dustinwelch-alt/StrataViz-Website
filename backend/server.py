@@ -76,9 +76,9 @@ DEFAULT_BUILDS = [
         "label": "Mac OS",
         "subtitle": "Apple Silicon · M1/M2/M3",
         "file_ext": ".dmg",
-        "version": "1.0.0",
-        "file_size": "176 MB",
-        "file_url": "https://downloads.strataviz.app/StrataViz-1.0.0-arm64.dmg",
+        "version": "1.2.1",
+        "file_size": "190.2 MB",
+        "file_url": "https://customer-assets-v7afamib.emergentagent.net/job_coach-breakdown/artifacts/fqv6akdq_StrataViz-1.2.1-arm64.dmg",
         "download_count": 0,
     },
     {
