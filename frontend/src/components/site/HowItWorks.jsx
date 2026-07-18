@@ -4,6 +4,8 @@ import { ImageIcon } from "lucide-react";
 
 const STEP1_IMG =
   "https://customer-assets-v7afamib.emergentagent.net/job_coach-breakdown/artifacts/57qcser9_ChatGPT%20Image%20Jul%2017%2C%202026%2C%2011_13_13%20PM.png";
+const STEP2_IMG =
+  "https://customer-assets-v7afamib.emergentagent.net/job_coach-breakdown/artifacts/tdzg11xz_ChatGPT%20Image%20Jul%2017%2C%202026%2C%2011_25_15%20PM.png";
 
 const steps = [
   {
@@ -16,7 +18,7 @@ const steps = [
     num: "02",
     title: "Make the Cut",
     body: "Clip the moments that matter with four editable clip buttons, so you can categorize clips by player, formation, or situation. Stack them into playlists your athletes actually watch.",
-    image: null,
+    image: STEP2_IMG,
   },
   {
     num: "03",
@@ -75,8 +77,7 @@ export const HowItWorks = () => {
         </motion.div>
 
         <div className="flex flex-col gap-20 md:gap-32">
-          {steps.map((step, i) => {
-            const flipped = i % 2 === 1;
+          {steps.map((step) => {
             return (
               <motion.div
                 key={step.num}
@@ -87,10 +88,7 @@ export const HowItWorks = () => {
                 data-testid={`how-step-${step.num}`}
                 className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-14 items-center"
               >
-                <div className={flipped ? "lg:order-2" : ""}>
-                  <ImagePanel step={step} />
-                </div>
-                <div className={flipped ? "lg:order-1" : ""}>
+                <div>
                   <span className="font-display text-7xl md:text-8xl leading-none text-transparent [-webkit-text-stroke:1.5px_rgba(255,90,0,0.75)]">
                     {step.num}
                   </span>
@@ -100,6 +98,9 @@ export const HowItWorks = () => {
                   <p className="text-base md:text-lg text-silver/80 leading-relaxed max-w-xl">
                     {step.body}
                   </p>
+                </div>
+                <div>
+                  <ImagePanel step={step} />
                 </div>
               </motion.div>
             );
