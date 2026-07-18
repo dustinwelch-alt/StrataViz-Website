@@ -4,18 +4,18 @@ import { motion } from "framer-motion";
 const chapters = [
   {
     num: "01",
-    title: "The Film",
-    body: "Every game hides a hundred lessons. Import full footage and scrub through it frame by frame — no more scrubbing across six apps to find one play.",
+    title: "Upload the Film",
+    body: "Every game hides a hundred lessons. Import full footage and store as much as your computer allows — no monthly caps, no paywalls, no cloud rationing your season.",
   },
   {
     num: "02",
-    title: "The Cut",
-    body: "Trim the moments that matter. Tag them by player, formation, or situation. Stack them into playlists your athletes actually watch.",
+    title: "Make the Cut",
+    body: "Clip the moments that matter with four editable clip buttons, so you can categorize clips by player, formation, or situation. Stack them into playlists your athletes actually watch.",
   },
   {
     num: "03",
-    title: "The Edge",
-    body: "Walk into every session with a plan. Share breakdowns with your staff and roster, and turn film study into wins on the scoreboard.",
+    title: "Gain the Edge",
+    body: "Walk into every game with a plan. Export and share playlists with your staff and players and turn film study into success on the scoreboard.",
   },
 ];
 
