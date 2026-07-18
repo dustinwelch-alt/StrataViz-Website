@@ -8,6 +8,8 @@ const STEP2_IMG =
   "https://customer-assets-v7afamib.emergentagent.net/job_coach-breakdown/artifacts/tdzg11xz_ChatGPT%20Image%20Jul%2017%2C%202026%2C%2011_25_15%20PM.png";
 const STEP3_IMG =
   "https://customer-assets-v7afamib.emergentagent.net/job_coach-breakdown/artifacts/74ez4mmw_ChatGPT%20Image%20Jul%2017%2C%202026%2C%2011_57_55%20PM.png";
+const STEP4_IMG =
+  "https://customer-assets-v7afamib.emergentagent.net/job_coach-breakdown/artifacts/wv0626fz_ChatGPT%20Image%20Jul%2018%2C%202026%2C%2012_11_10%20AM.png";
 
 const steps = [
   {
@@ -32,7 +34,7 @@ const steps = [
     num: "04",
     title: "Export and Share",
     body: "Export or download selected clips or entire playlists and share them with your staff and team via your chosen method. (Currently, StrataViz does not support in-app sharing.)",
-    image: null,
+    image: STEP4_IMG,
   },
 ];
 
