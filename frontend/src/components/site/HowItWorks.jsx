@@ -23,7 +23,7 @@ const steps = [
   {
     num: "03",
     title: "Add to Playlists",
-    body: "Easily add clips to a playlist or multiple playlists.",
+    body: "Easily select and add clips to a playlist or multiple playlists.",
     image: null,
   },
 ];
