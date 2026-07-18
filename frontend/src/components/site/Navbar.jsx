@@ -45,8 +45,8 @@ export const Navbar = () => {
         >
           <img src={LOGO} alt="StrataViz" className="h-11 w-11 object-contain" />
           <span className="font-display text-2xl tracking-tight leading-none">
-            <span className="metal-text">STRATA</span>
-            <span className="text-orange">VIZ</span>
+            <span className="metal-text">Strata</span>
+            <span className="text-orange">Viz</span>
           </span>
         </button>
 
@@ -69,7 +69,7 @@ export const Navbar = () => {
           className="group flex items-center gap-2 bg-sv-orange hover:bg-sv-orangeHover text-black font-bold text-sm uppercase tracking-wider px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-[1.03]"
         >
           <Download className="w-4 h-4" strokeWidth={2.5} />
-          Get StrataViz
+          Get <span className="normal-case">StrataViz</span>
         </button>
       </div>
     </motion.header>

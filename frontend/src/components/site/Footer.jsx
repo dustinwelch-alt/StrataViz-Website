@@ -21,8 +21,8 @@ export const Footer = () => {
             <div className="flex items-center gap-3 mb-5">
               <img src={LOGO} alt="StrataViz" className="h-10 w-10 object-contain" />
               <span className="font-display text-2xl tracking-tight">
-                <span className="metal-text">STRATA</span>
-                <span className="text-orange">VIZ</span>
+                <span className="metal-text">Strata</span>
+                <span className="text-orange">Viz</span>
               </span>
             </div>
             <p className="text-silver/70 leading-relaxed">
@@ -68,7 +68,7 @@ export const Footer = () => {
             aria-hidden="true"
             className="font-display uppercase leading-[0.8] tracking-tighter text-[19vw] text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.08)] select-none pointer-events-none"
           >
-            STRATAVIZ
+            StrataViz
           </div>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mt-6 text-sm text-silver/50">
             <span>© {new Date().getFullYear()} StrataViz Sports. All rights reserved.</span>

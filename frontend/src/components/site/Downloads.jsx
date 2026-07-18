@@ -82,7 +82,7 @@ export const Downloads = () => {
           <span className="overline text-sv-orange">Free Download</span>
           <h2 className="font-display uppercase text-5xl md:text-8xl leading-[0.88] tracking-tighter mt-5">
             <span className="metal-text">Get</span>{" "}
-            <span className="text-orange">StrataViz</span>
+            <span className="text-orange normal-case">StrataViz</span>
           </h2>
           <p className="mt-6 text-silver/80 text-base md:text-lg max-w-xl mx-auto">
             Native desktop builds for Windows and macOS. Pick your platform and
@@ -95,7 +95,7 @@ export const Downloads = () => {
             <Loader2 className="w-8 h-8 text-sv-orange animate-spin" />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
             {builds.map((b, i) => {
               const meta = platformMeta[b.platform] || platformMeta.windows;
               const Icon = meta.icon;
