@@ -11,6 +11,11 @@ module.exports = {
         display: ['Anton', 'sans-serif'],
         sans: ['Manrope', 'sans-serif'],
       },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)'
+      },
       colors: {
         sv: {
           bg: '#050505',
@@ -20,13 +25,6 @@ module.exports = {
           orangeHover: '#ff7324',
           silver: '#c7c9cf',
         },
-      },
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)'
-      },
-      colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
