@@ -28,6 +28,12 @@ const steps = [
     body: "Easily select and add clips to a playlist or multiple playlists.",
     image: STEP3_IMG,
   },
+  {
+    num: "04",
+    title: "Export and Share",
+    body: "Export or download selected clips or entire playlists and share them with your staff and team via your chosen method. (Currently, StrataViz does not support in-app sharing.)",
+    image: null,
+  },
 ];
 
 const reveal = {
