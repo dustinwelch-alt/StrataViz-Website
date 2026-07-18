@@ -73,7 +73,7 @@ DEFAULT_BUILDS = [
     },
     {
         "platform": "mac_apple_silicon",
-        "label": "macOS",
+        "label": "Mac OS",
         "subtitle": "Apple Silicon · M1/M2/M3",
         "file_ext": ".dmg",
         "version": "1.0.0",
@@ -83,7 +83,7 @@ DEFAULT_BUILDS = [
     },
     {
         "platform": "mac_intel",
-        "label": "macOS",
+        "label": "Mac OS",
         "subtitle": "Intel · x86-64",
         "file_ext": ".dmg",
         "version": "1.0.0",
