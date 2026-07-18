@@ -6,6 +6,8 @@ const STEP1_IMG =
   "https://customer-assets-v7afamib.emergentagent.net/job_coach-breakdown/artifacts/57qcser9_ChatGPT%20Image%20Jul%2017%2C%202026%2C%2011_13_13%20PM.png";
 const STEP2_IMG =
   "https://customer-assets-v7afamib.emergentagent.net/job_coach-breakdown/artifacts/tdzg11xz_ChatGPT%20Image%20Jul%2017%2C%202026%2C%2011_25_15%20PM.png";
+const STEP3_IMG =
+  "https://customer-assets-v7afamib.emergentagent.net/job_coach-breakdown/artifacts/74ez4mmw_ChatGPT%20Image%20Jul%2017%2C%202026%2C%2011_57_55%20PM.png";
 
 const steps = [
   {
@@ -24,7 +26,7 @@ const steps = [
     num: "03",
     title: "Add to Playlists",
     body: "Easily select and add clips to a playlist or multiple playlists.",
-    image: null,
+    image: STEP3_IMG,
   },
 ];
 
