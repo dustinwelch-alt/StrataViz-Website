@@ -1,0 +1,32 @@
+{
+  "summary": "Frontend-only regression check after Cloudflare Pages dependency fix (date-fns@^3.6.0, ajv/ajv-keywords added). Site loads, all sections render, brand orange visible, download hrefs match spec, smooth-scroll nav works. No regressions.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "verified_checks": {
+    "nav_download_button_bg": "rgb(255, 90, 0) ✓",
+    "contact_email_button_bg": "rgb(255, 90, 0) ✓",
+    "contact_email_href": "mailto:stratavizsports@gmail.com ✓",
+    "contact_email_text": "stratavizsports@gmail.com ✓ (matches case-insensitive requirement STRATAVIZSPORTS@GMAIL.COM)",
+    "downloads_windows_href": "https://github.com/dustinwelch-alt/StrataViz-Releases/releases/latest/download/StrataViz-Setup.exe ✓",
+    "downloads_mac_apple_silicon_href": "https://github.com/dustinwelch-alt/StrataViz-Downloads/releases/latest/download/StrataViz-AppleSilicon.dmg ✓",
+    "downloads_mac_intel_href": "https://github.com/dustinwelch-alt/StrataViz-Downloads/releases/latest/download/StrataViz-Intel.dmg ✓",
+    "hero_primary_cta_text": "'Download Free for a Limited Time' ✓",
+    "downloads_overline_text": "'FREE FOR A LIMITED TIME' ✓",
+    "how_it_works_steps": "01/02/03/04 present; titles 'Upload the Film', 'Make the Cut', 'Add to Playlists', 'Export and Share' all found ✓",
+    "how_it_works_images": "4 images loaded (naturalWidth > 0) ✓",
+    "nav_links_present": "features, how-it-works, downloads ✓",
+    "smooth_scroll": "Click on nav-link-downloads scrolled from y=0 to y=5487 ✓"
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped)", "frontend": "100%"},
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Static landing site at '/'. Uses Lenis smooth scroll — prefer wait_for_load_state('domcontentloaded') over 'networkidle' (which times out). Use scrollIntoView + waits to bring below-fold sections into DOM/view before text checks."
+}
