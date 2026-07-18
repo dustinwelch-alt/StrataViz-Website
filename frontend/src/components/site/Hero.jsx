@@ -98,7 +98,7 @@ export const Hero = () => {
               onClick={() => scrollTo("downloads")}
               className="bg-sv-orange hover:bg-sv-orangeHover text-black font-bold uppercase tracking-wider text-sm px-7 py-4 rounded-full transition-all duration-300 hover:scale-[1.04]"
             >
-              Download Free
+              Download Free for a Limited Time
             </button>
             <button
               data-testid="hero-tour-button"

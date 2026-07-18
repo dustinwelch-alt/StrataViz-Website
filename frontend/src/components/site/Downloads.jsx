@@ -77,7 +77,7 @@ export const Downloads = () => {
           variants={reveal}
           className="text-center mb-16 md:mb-20"
         >
-          <span className="overline text-sv-orange">Free Download</span>
+          <span className="overline text-sv-orange">Free For A Limited Time</span>
           <h2 className="font-display uppercase text-5xl md:text-8xl leading-[0.88] tracking-tighter mt-5">
             <span className="metal-text">Get</span>{" "}
             <span className="text-orange normal-case">StrataViz</span>
