@@ -86,9 +86,9 @@ DEFAULT_BUILDS = [
         "label": "Mac OS",
         "subtitle": "Intel · x86-64",
         "file_ext": ".dmg",
-        "version": "1.0.0",
-        "file_size": "189 MB",
-        "file_url": "https://downloads.strataviz.app/StrataViz-1.0.0-x64.dmg",
+        "version": "1.2.1",
+        "file_size": "195 MB",
+        "file_url": "https://customer-assets-v7afamib.emergentagent.net/job_coach-breakdown/artifacts/ql9eyvy3_StrataViz-1.2.1.dmg",
         "download_count": 0,
     },
 ]
