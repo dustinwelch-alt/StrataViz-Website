@@ -22,8 +22,8 @@ const steps = [
   },
   {
     num: "03",
-    title: "Gain the Edge",
-    body: "Walk into every game with a plan. Export and share playlists with your staff and players and turn film study into success on the scoreboard.",
+    title: "Add to Playlists",
+    body: "Easily add clips to a playlist or multiple playlists.",
     image: null,
   },
 ];
