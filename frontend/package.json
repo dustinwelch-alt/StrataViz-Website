@@ -67,7 +67,7 @@
     "build": "craco build",
     "test": "craco test",
     "setup:tracker": "bash ../scripts/setup-download-tracker.sh",
-    "deploy:pages": "npm run build && npx wrangler@4 pages deploy build"
+    "deploy:pages": "npm run build && npx wrangler@4 deploy --assets ./build"
   },
   "browserslist": {
     "production": [

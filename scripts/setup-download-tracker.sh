@@ -55,7 +55,7 @@ npx wrangler@4 d1 migrations apply "$DB_NAME" --remote
 
 echo ""
 echo "Done! Next: push to GitHub so Cloudflare Pages redeploys,"
-echo "or run: cd frontend && npm run build && npx wrangler@4 pages deploy build"
+echo "or run: cd frontend && npm run deploy:pages"
 echo ""
 echo "Check stats anytime at: https://YOUR-DOMAIN/api/stats"
 echo ""
