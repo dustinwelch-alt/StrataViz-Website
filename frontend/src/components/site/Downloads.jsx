@@ -54,11 +54,44 @@ const reveal = {
   }),
 };
 
+const formatDownloadCount = (count) => {
+  const n = count ?? 0;
+  return `${n.toLocaleString()} download${n === 1 ? "" : "s"}`;
+};
+
 export const Downloads = () => {
   const [recommended, setRecommended] = useState("windows");
+  const [downloadCounts, setDownloadCounts] = useState({});
+  const [countsLoading, setCountsLoading] = useState(true);
 
   useEffect(() => {
     setRecommended(detectPlatform());
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadCounts = async () => {
+      try {
+        const res = await fetch("/api/stats");
+        if (!res.ok) return;
+        const data = await res.json();
+        if (!cancelled) {
+          setDownloadCounts(data.by_platform || {});
+        }
+      } catch {
+        // Stats are optional — cards still work without them.
+      } finally {
+        if (!cancelled) setCountsLoading(false);
+      }
+    };
+
+    loadCounts();
+    window.addEventListener("focus", loadCounts);
+    return () => {
+      cancelled = true;
+      window.removeEventListener("focus", loadCounts);
+    };
   }, []);
 
   return (
@@ -127,6 +160,15 @@ export const Downloads = () => {
                   <span className="h-1 w-1 rounded-full bg-silver/40" />
                   <span className="uppercase">{b.file_ext}</span>
                 </div>
+
+                <p
+                  className="mt-5 text-sm font-semibold text-sv-orange"
+                  data-testid={`download-count-${b.platform}`}
+                >
+                  {countsLoading
+                    ? "Loading downloads…"
+                    : formatDownloadCount(downloadCounts[b.platform])}
+                </p>
 
                 <a
                   href={b.file_url}
