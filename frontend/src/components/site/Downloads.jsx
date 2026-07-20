@@ -10,7 +10,7 @@ const BUILDS = [
     file_ext: ".exe",
     version: "1.2.1",
     file_size: "287.5 MB",
-    file_url: "https://github.com/dustinwelch-alt/StrataViz-Releases/releases/latest/download/StrataViz-Setup.exe",
+    file_url: "/dl/windows",
     icon: Monitor,
     tag: "For Windows",
   },
@@ -21,8 +21,7 @@ const BUILDS = [
     file_ext: ".dmg",
     version: "1.2.1",
     file_size: "190.2 MB",
-    file_url:
-      "https://github.com/dustinwelch-alt/StrataViz-Downloads/releases/latest/download/StrataViz-AppleSilicon.dmg",
+    file_url: "/dl/mac_apple_silicon",
     icon: Apple,
     tag: "For Mac OS",
   },
@@ -33,8 +32,7 @@ const BUILDS = [
     file_ext: ".dmg",
     version: "1.2.1",
     file_size: "195 MB",
-    file_url:
-      "https://github.com/dustinwelch-alt/StrataViz-Downloads/releases/latest/download/StrataViz-Intel.dmg",
+    file_url: "/dl/mac_intel",
     icon: Apple,
     tag: "For Mac OS",
   },
@@ -132,7 +130,6 @@ export const Downloads = () => {
 
                 <a
                   href={b.file_url}
-                  download
                   data-testid={`download-button-${b.platform}`}
                   className={`mt-8 flex items-center justify-center gap-2 font-bold uppercase tracking-wider text-sm px-6 py-4 rounded-full transition-all duration-300 ${
                     isRec
