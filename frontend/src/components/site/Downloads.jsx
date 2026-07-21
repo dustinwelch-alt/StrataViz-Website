@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Apple, Monitor, Download } from "lucide-react";
+import { DOWNLOAD_URLS, TRACKER_FALLBACK } from "@/constants/downloads";
 
 const BUILDS = [
   {
@@ -10,7 +11,6 @@ const BUILDS = [
     file_ext: ".exe",
     version: "1.2.1",
     file_size: "287.5 MB",
-    file_url: "/dl/windows",
     icon: Monitor,
     tag: "For Windows",
   },
@@ -21,7 +21,6 @@ const BUILDS = [
     file_ext: ".dmg",
     version: "1.2.1",
     file_size: "190.2 MB",
-    file_url: "/dl/mac_apple_silicon",
     icon: Apple,
     tag: "For Mac OS",
   },
@@ -32,7 +31,6 @@ const BUILDS = [
     file_ext: ".dmg",
     version: "1.2.1",
     file_size: "195 MB",
-    file_url: "/dl/mac_intel",
     icon: Apple,
     tag: "For Mac OS",
   },
@@ -59,6 +57,17 @@ const formatDownloadCount = (count) => {
   return `${n.toLocaleString()} download${n === 1 ? "" : "s"}`;
 };
 
+async function trackerFetch(path, options = {}) {
+  try {
+    const local = await fetch(path, options);
+    if (local.ok) return local;
+  } catch {
+    // Fall back to the Cloudflare worker if the site is static-only.
+  }
+
+  return fetch(`${TRACKER_FALLBACK}${path}`, options);
+}
+
 export const Downloads = () => {
   const [recommended, setRecommended] = useState("windows");
   const [downloadCounts, setDownloadCounts] = useState({});
@@ -73,7 +82,7 @@ export const Downloads = () => {
 
     const loadCounts = async () => {
       try {
-        const res = await fetch("/api/stats");
+        const res = await trackerFetch("/api/stats");
         if (!res.ok) return;
         const data = await res.json();
         if (!cancelled) {
@@ -93,6 +102,19 @@ export const Downloads = () => {
       window.removeEventListener("focus", loadCounts);
     };
   }, []);
+
+  const handleDownload = (platform) => async (event) => {
+    event.preventDefault();
+    const fileUrl = DOWNLOAD_URLS[platform];
+
+    try {
+      await trackerFetch(`/api/track/${platform}`, { method: "POST" });
+    } catch {
+      // Never block the download if tracking fails.
+    }
+
+    window.location.assign(fileUrl);
+  };
 
   return (
     <section
@@ -171,7 +193,8 @@ export const Downloads = () => {
                 </p>
 
                 <a
-                  href={b.file_url}
+                  href={DOWNLOAD_URLS[b.platform]}
+                  onClick={handleDownload(b.platform)}
                   data-testid={`download-button-${b.platform}`}
                   className={`mt-8 flex items-center justify-center gap-2 font-bold uppercase tracking-wider text-sm px-6 py-4 rounded-full transition-all duration-300 ${
                     isRec

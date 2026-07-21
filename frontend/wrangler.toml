@@ -7,6 +7,14 @@ directory = "build"
 binding = "ASSETS"
 not_found_handling = "single-page-application"
 
+[[routes]]
+pattern = "stratavizsports.com/*"
+zone_name = "stratavizsports.com"
+
+[[routes]]
+pattern = "www.stratavizsports.com/*"
+zone_name = "stratavizsports.com"
+
 [[d1_databases]]
 binding = "DB"
 database_name = "strataviz-downloads"
