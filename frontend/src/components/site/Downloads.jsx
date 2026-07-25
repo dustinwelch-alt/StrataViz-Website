@@ -20,7 +20,7 @@ const BUILDS = [
     subtitle: "Apple Silicon · M1/M2/M3",
     file_ext: ".dmg",
     version: "1.2.1",
-    file_size: "190.2 MB",
+    file_size: "142 MB",
     icon: Apple,
     tag: "For Mac OS",
   },
@@ -30,7 +30,7 @@ const BUILDS = [
     subtitle: "Intel · x86-64",
     file_ext: ".dmg",
     version: "1.2.1",
-    file_size: "195 MB",
+    file_size: "146 MB",
     icon: Apple,
     tag: "For Mac OS",
   },
@@ -209,6 +209,46 @@ export const Downloads = () => {
             );
           })}
         </div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={reveal}
+          data-testid="mac-install-notice"
+          className="mt-10 md:mt-14 mx-auto max-w-3xl rounded-2xl border border-white/10 bg-sv-elevated p-6 md:p-8"
+        >
+          <div className="flex items-start gap-4">
+            <Apple className="w-8 h-8 text-sv-orange shrink-0 mt-0.5" strokeWidth={1.5} />
+            <div>
+              <h3 className="font-display uppercase text-xl md:text-2xl tracking-tight text-white">
+                First time on Mac?
+              </h3>
+              <p className="mt-3 text-silver/75 text-sm md:text-base leading-relaxed">
+                macOS may show a security warning because StrataViz isn&apos;t from
+                the App Store yet. The app is safe — follow these steps once after
+                installing:
+              </p>
+              <ol className="mt-4 space-y-2 text-sm md:text-base text-silver/80 list-decimal list-inside">
+                <li>Open the <span className="text-white">.dmg</span> and drag StrataViz to Applications.</li>
+                <li>
+                  In Finder, open Applications, then{" "}
+                  <span className="text-white">right-click StrataViz → Open</span>{" "}
+                  (don&apos;t double-click the first time).
+                </li>
+                <li>Click <span className="text-white">Open</span> in the dialog that appears.</li>
+              </ol>
+              <p className="mt-4 text-silver/55 text-xs md:text-sm">
+                After the first launch, you can open StrataViz normally. If you
+                don&apos;t see an Open option, go to{" "}
+                <span className="text-silver/70">
+                  System Settings → Privacy &amp; Security → Open Anyway
+                </span>
+                .
+              </p>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
