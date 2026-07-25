@@ -237,14 +237,18 @@ export const Downloads = () => {
                   (don&apos;t double-click the first time).
                 </li>
                 <li>Click <span className="text-white">Open</span> in the dialog that appears.</li>
+                <li>
+                  <span className="text-white">Fallback:</span> If you only see{" "}
+                  <span className="text-white">Move to Trash</span> or no Open option,
+                  try opening StrataViz once, then go to{" "}
+                  <span className="text-white">
+                    System Settings → Privacy &amp; Security → Open Anyway
+                  </span>
+                  .
+                </li>
               </ol>
               <p className="mt-4 text-silver/55 text-xs md:text-sm">
-                After the first launch, you can open StrataViz normally. If you
-                don&apos;t see an Open option, go to{" "}
-                <span className="text-silver/70">
-                  System Settings → Privacy &amp; Security → Open Anyway
-                </span>
-                .
+                After the first launch, you can open StrataViz normally.
               </p>
             </div>
           </div>
