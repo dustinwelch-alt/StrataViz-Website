@@ -10,7 +10,7 @@ const BUILDS = [
     subtitle: "Windows 10 & 11 · 64-bit",
     file_ext: ".exe",
     version: "1.2.1",
-    file_size: "287.5 MB",
+    file_size: "592 MB",
     icon: Monitor,
     tag: "For Windows",
   },
